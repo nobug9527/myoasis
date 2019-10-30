@@ -1,0 +1,20 @@
+﻿<div id="list">
+    <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1" value="添加" />
+    <table class="table table-bordered">
+        <tr style="color:#000000">
+            <th><span style="color:#ffffff">名称</span></th>
+            <th><span style="color:#ffffff">网址</span></th>
+            <th><span style="color:#ffffff">操作</span></th>
+        </tr>
+        @foreach (var collect in @Model)
+        {
+            <tr>
+                <td><span style="color:#ffffff"><a href="@collect.url" target="_blank">@collect.name</a></span></td>
+                <td><span style="color:#ffffff">@collect.url</span></td>
+                <td>
+                    @Ajax.ActionLink("删除", "delete", "Collect", new { id = @collect.id }, new AjaxOptions() { UpdateTargetId = "list", Confirm = "确定删除么？", OnSuccess = "HideAdd()" }, new { Class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </table>
+</div>

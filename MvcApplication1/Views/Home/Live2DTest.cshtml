@@ -1,0 +1,53 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Live2DTest</title>
+    <script src="~/js/live2d.js"></script>
+    <script src="~/js/jquery1.11.3.min.js"></script>
+    <script src="~/js/waifu-tips.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            loadlive2d("live2d", "http://localhost:15333/js/model/shizuku/shizuku.model.json");
+        })
+    </script>
+    <style type="text/css">
+        .waifu {
+            position:absolute;
+            bottom:0%;
+            right:50%;
+        }
+        .waifu-tips {
+            opacity: 0;
+            width: 250px;
+            height: 70px;
+            margin: -20px -62px;
+            padding: 5px 10px;
+            border: 1px solid rgba(224, 186, 140, 0.62);
+            border-radius: 12px;
+            background-color: rgba(236, 217, 188, 0.5);
+            box-shadow: 0 3px 15px 2px rgba(191, 158, 118, 0.2);
+            font-size: 12px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            position: absolute;
+            animation-delay: 5s;
+            animation-duration: 50s;
+            animation-iteration-count: infinite;
+            animation-name: shake;
+            animation-timing-function: ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="waifu">
+        <div class="waifu-tips">11111111111111111</div>
+        <canvas id="live2d" width="200" height="400" class="live2d"></canvas>
+    </div>
+</body>
+</html>

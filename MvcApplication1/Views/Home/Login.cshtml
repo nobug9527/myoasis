@@ -1,0 +1,57 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <script src="~/js/jquery1.11.3.min.js"></script>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            margin-left: auto;
+            margin-right: auto;
+            margin-TOP: 100PX;
+            width: 20em;
+            background: url("../Images/IMG_6347.PNG") no-repeat;
+            background-size: 100%;
+        }
+    </style>
+
+</head>
+<body>
+        <div>
+            @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+            {
+
+       <!--用户名输入框-->
+
+                <div class="input-group">
+
+                    <span class="input-group-addon" id="basic-addon1">@@</span>
+                    <input id="username" type="text" name="name" class="form-control" placeholder="用户名" aria-describedby="basic-addon1">
+                </div>
+                <span id="login_msg1" style="color:red"></span>
+
+                <br>
+
+        <!--密码输入框-->
+
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">@@</span>
+                    <input id="password" type="password" name="pwd" class="form-control" placeholder="密码" aria-describedby="basic-addon1">
+
+                </div>
+                <span id="login_msg2" style="color:red"></span>
+                <br>
+
+        <!--登陆按钮-->
+                <button type="submit" style="width:280px;" class="btn btn-default" onclick="return checklogin()">登 录</button>
+            }
+        </div>
+</body>
+</html>

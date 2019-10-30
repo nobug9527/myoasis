@@ -1,0 +1,23 @@
+﻿<div id="alldiary">
+    <div id="notelist">
+        @using System.Data;
+        @foreach (DataRow item in @Model.Rows)
+        {
+            <div style="color:#00ffff">@item["diarydate"]  @item["weather"]:</div>
+            <br />
+            <div style="color:#ffffff">@Html.Raw(HttpUtility.HtmlDecode(@item["diarycontent"].ToString()))</div>
+            var num = Model.Rows.IndexOf(item);
+            if (num != Model.Rows.Count-1)
+            {
+                <span style="color:#0094ff">----------------------------</span>
+            }
+
+        }
+    </div>
+    @using (Ajax.BeginForm("ShowDiary", "Diary", new { monthid = "" + ViewBag.monthid + "" }, new AjaxOptions() { UpdateTargetId = "alldiary" }))
+    {
+        <textarea name="diarycontent"></textarea>
+        <script type="text/javascript">CKEDITOR.replace("diarycontent")</script>
+        <button type="submit" class="btn btn-primary">提交</button>
+    }
+</div>

@@ -1,0 +1,15 @@
+﻿<div id="list">
+    <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1" value="添加" />
+    <br />
+    <br />
+    <br />
+    <table class="table-striped">
+        @using System.Data
+        @foreach (DataRow item in @Model.Rows)
+        {
+            <tr>
+                <td style="background-color:#000000"><h2>@Ajax.ActionLink("" + @item["name"] + "", "NoteList", "Note", new { typeid=""+@item["id"]+""}, new AjaxOptions { UpdateTargetId = "main" })</h2></td>
+            </tr>
+        }
+    </table>
+</div>

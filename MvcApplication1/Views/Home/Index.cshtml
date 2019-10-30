@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+@*<a href="/Home/ShowApi">接口调用测试</a>*@
+<script type="text/javascript">
+    function getjson() {
+        $.ajax({
+            url: "/Home/ShowApi",
+            type: "get",
+            async: false,
+            success: function (result) {
+                var obj = eval('(' + result + ')');
+                var status = obj.ret;
+                var cityinfo = obj.data.cityinfo;
+                var city = cityinfo.city;
+                var data = obj.data.cityinfo.city;
+                $("#p1").html(city);
+            }
+        })
+    }
+</script>
+<div style="height:100%">
+    <h2 style="color:#ffffff">WelCome to My Oasis</h2>
+</div>
