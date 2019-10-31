@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using my.BLL;
 using System.Data;
-
+using System.IO;
 namespace MvcApplication1.Controllers
 {
     public class NoteController : Controller
@@ -73,6 +73,30 @@ namespace MvcApplication1.Controllers
         public JsonResult getcontentedit(int id) { 
             string str = bll.GetEditContentById(id);
             return Json(str);
+        }
+
+        public JsonResult UploadImage(HttpPostedFileBase upload)
+        {
+            string savePath = "/upload/";
+            string dirPath = System.Web.HttpContext.Current.Server.MapPath(savePath);
+            if (!Directory.Exists(dirPath))
+                Directory.CreateDirectory(dirPath);
+
+            var fileName = Path.GetFileName(upload.FileName);
+            //获取文件后缀名
+            string fileExt = Path.GetExtension(fileName).ToLower();
+            string newFileName = DateTime.Now.ToString("yyyyMMddHHmmss_ffff") + fileExt;
+            upload.SaveAs(dirPath + "/" + newFileName);
+            //string callback = Request.QueryString["CKEditorFuncNum"];
+            //Response.Write("<script type=\"text/javascript\">");
+            //Response.Write("window.parent.CKEDITOR.tools.callFunction(" + newFileName + "',''" + ")");
+            //Response.Write("</script>");
+            return Json(new
+            {
+                uploaded = 1,
+                fileName = newFileName,
+                url = savePath + newFileName
+            });
         }
 
 
